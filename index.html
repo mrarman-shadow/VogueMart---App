@@ -27,5 +27,24 @@
   </table>
 
   <script src="script.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js"></script>
+<script type="module" src="script.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyC-KHJ028kzoYJUkGbBRVPAvzm7u2ZoRCI",
+    authDomain: "web-dev-bac39.firebaseapp.com",
+    projectId: "web-dev-bac39",
+    storageBucket: "web-dev-bac39.firebasestorage.app",
+    messagingSenderId: "954602183053",
+    appId: "1:954602183053:web:e5a0797c35b2d8a5c6c5c4",
+    measurementId: "G-Q0JQ8K3LSW"
+  };
+
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+
 </body>
 </html>
