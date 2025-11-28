@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VogueMart - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h1 class="brand">VogueMart</h1>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#products">Shop</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="#" class="btn" id="login-btn">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- Login Section -->
+  <section class="login-section">
+    <h2>Login to VogueMart</h2>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Enter your email" required>
+      <input type="password" id="password" placeholder="Enter your password" required>
+      <button type="submit" id="login-btn-form">Login</button>
+    </form>
+    <p id="login-error" style="color:red;"></p>
+  </section>
+
+  <!-- Footer -->
+  <footer><p>© 2025 VogueMart | All Rights Reserved</p></footer>
+
+  <!-- Firebase Login Script -->
+  <script type="module" src="login.js"></script>
+
+</body>
+</html>
