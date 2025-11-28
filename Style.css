@@ -323,3 +323,23 @@ footer {
     align-items: flex-start;
   }
 }
+.login-section, 
+.cart-page, 
+.hero {
+  margin-top: 100px; /* enough to clear navbar */
+}
+@media (max-width: 768px) {
+  nav.navbar {
+    padding: 10px 15px;
+  }
+}
+@media (max-width: 480px) {
+  .login-box {
+    margin-top: 150px; /* pushes login box below navbar */
+  }
+  
+  .cart-page {
+    margin-top: 160px; /* pushes cart content below navbar */
+  }
+}
+
