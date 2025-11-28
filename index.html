@@ -3,48 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Manager</title>
-  <link rel="stylesheet" href="Style.css">
+  <title>VogueMart</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <h1>🎓 Student Manager</h1>
 
-  <div class="form">
-    <input type="text" id="name" placeholder="Enter student name">
-    <input type="text" id="course" placeholder="Enter course">
-    <button onclick="addStudent()">Add</button>
-  </div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h1 class="brand">VogueMart</h1>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a id="shopBtn">Shop</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="login.html" class="btn" id="login-btn">Login</a></li>
+    </ul>
+    <p id="user-status">Not Logged In</p>
+    <button id="logout-btn" style="display:none;">Logout</button>
+  </nav>
 
-  <table id="studentTable">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Course</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to VogueMart</h1>
+    <p>Discover the latest fashion trends with premium quality</p>
+    <button id="heroShop">Shop Now</button>
+  </section>
 
-  <script src="script.js"></script>
- <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js"></script>
-<script type="module" src="script.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyC-KHJ028kzoYJUkGbBRVPAvzm7u2ZoRCI",
-    authDomain: "web-dev-bac39.firebaseapp.com",
-    projectId: "web-dev-bac39",
-    storageBucket: "web-dev-bac39.firebasestorage.app",
-    messagingSenderId: "954602183053",
-    appId: "1:954602183053:web:e5a0797c35b2d8a5c6c5c4",
-    measurementId: "G-Q0JQ8K3LSW"
-  };
+  <!-- Products Section -->
+  <section id="products" class="products">
+    <div class="product-card">
+      <img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/10686028/2024/6/21/335e6cb9-a51c-4f50-9b23-90775899276a1718972512096-DENNISON-Men-Teal-Blue-Classic-Regular-Fit-Solid-Formal-Shir-1.jpg">
+      <h3>Classic Cotton Shirt</h3>
+      <p class="price">₹999</p>
+      <button onclick="addToCart('Classic Cotton Shirt', 999)">Add to Cart</button>
+    </div>
 
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-</script>
+    <div class="product-card">
+      <img src="https://i5.walmartimages.com/seo/Poedagar-Top-Brand-Luxury-Men-Watch-Waterproof-Luminous-Stainless-Steel-Watches-Sport-Quartz-Clock-Mens-Date-Business-Wristwatch-Quartz-Wristwatches_9e8f9e27-a565-433d-a631-0217e7658626.5a77011a5e9db0be8848f49f56f7ce28.jpeg">
+      <h3>Luxury Wrist Watch</h3>
+      <p class="price">₹1799</p>
+      <button onclick="addToCart('Luxury Wrist Watch', 1799)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="https://5.imimg.com/data5/SELLER/Default/2024/12/469703376/TD/OD/CO/191798954/dual-colour-vegan-striped-premium-shoes-for-men-500x500.png">
+      <h3>Premium Sneakers</h3>
+      <p class="price">₹2599</p>
+      <button onclick="addToCart('Premium Sneakers', 2599)">Add to Cart</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer><p>© 2025 VogueMart | All Rights Reserved</p></footer>
+
+  <!-- Firebase Auth Status & Logout Script -->
+  <script type="module">
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+    import { app } from "./firebase-init.js";
+
+    const auth = getAuth(app);
+    const loginBtn = document.getElementById("login-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+    const userStatus = document.getElementById("user-status");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        userStatus.innerText = "Welcome, " + user.email;
+        loginBtn.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+      } else {
+        userStatus.innerText = "Not Logged In";
+        loginBtn.style.display = "inline-block";
+        logoutBtn.style.display = "none";
+      }
+    });
+
+    logoutBtn.addEventListener("click", () => {
+      signOut(auth)
+        .then(() => {
+          alert("Logged out successfully!");
+        })
+        .catch((error) => {
+          console.error("Logout error:", error);
+        });
+    });
+  </script>
 
 </body>
 </html>
