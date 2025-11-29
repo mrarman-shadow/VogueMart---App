@@ -400,5 +400,91 @@ footer {
   color: #f8d0a4;
   padding-left: 15px;
 }
+/* ---------------- Top tabbar (bottom nav moved to top) ---------------- */
+.top-tabbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/* tabs inside the top bar */
+.top-tabbar .tab {
+  background: transparent;
+  border: none;
+  color: #024558;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+.top-tabbar .tab .tab-icon { font-size: 18px; line-height:1; }
+.top-tabbar .tab .tab-label { font-size: 12px; }
+
+/* active tab accent */
+.top-tabbar .tab.active {
+  background: linear-gradient(90deg, rgba(248,208,164,0.12), rgba(248,208,164,0.06));
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+/* ---------------- Make space for fixed top-tabbar ---------------- */
+/* main content pushed down so nothing overlaps the tabbar */
+.main-content {
+  margin-top: 74px; /* ~tabbar height (64) + small gap */
+  padding-bottom: 40px;
+}
+
+/* ---------------- Navbar (not fixed) ---------------- */
+nav.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  background-color: transparent; /* keep theme background color visible */
+  color: #f8d0a4;
+  /* remove fixed/position so it does not overlap */
+  position: relative;
+  margin-bottom: 6px;
+}
+
+/* brand and login styling (keeps login on the right) */
+nav .brand { color: #f8d0a4; font-size: 22px; margin: 0; }
+nav .nav-right { display:flex; align-items:center; gap:10px; }
+nav .login-btn { background:#ff4c4c; color:#fff; padding:6px 10px; border-radius:6px; text-decoration:none; }
+
+/* ---------------- Search (safe spacing) ---------------- */
+.search-section {
+  padding: 10px 15px;
+}
+.search-section input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #ffffff;
+  font-size: 16px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+/* small responsive tweaks so nothing overlaps on tiny phones */
+@media (max-width:480px) {
+  .top-tabbar { height: 64px; }
+  .main-content { margin-top: 78px; }
+  nav .brand { font-size: 20px; }
+  .search-section input { font-size: 15px; }
+  .top-tabbar .tab .tab-icon { font-size: 17px; }
+}
 
 
