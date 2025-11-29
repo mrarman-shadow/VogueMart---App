@@ -341,5 +341,64 @@ footer {
   .cart-page {
     margin-top: 160px; /* pushes cart content below navbar */
   }
+} 
+/* ===== Search Bar ===== */
+.search-section {
+  margin: 100px 15px 10px;
 }
+
+.search-section input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #ffffff;
+  font-size: 16px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+/* ===== Location Text ===== */
+.location-text {
+  color: #f8d0a4;
+  text-align: left;
+  padding-left: 15px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.location-text span { color: white; }
+
+/* ===== Categories ===== */
+.categories-container {
+  display: flex;
+  gap: 12px;
+  overflow-x: scroll;
+  padding: 10px 15px;
+}
+
+.category-box {
+  background: #f8d0a4;
+  color: #024558;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ===== Banner ===== */
+.banner {
+  margin: 10px 15px;
+}
+
+.banner img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* ===== Suggestions Title ===== */
+.suggestion-title {
+  color: #f8d0a4;
+  padding-left: 15px;
+}
+
 
