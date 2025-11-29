@@ -14,7 +14,7 @@
     <h1 class="brand">VogueMart</h1>
     <ul class="nav-links">
       <li><a href="#">Home</a></li>
-      <li><a id="shopBtn">Shop</a></li>
+      <li><a id="shopBtn" href="#products">Shop</a></li>
       <li><a href="cart.html">Cart</a></li>
       <li><a href="login.html" class="btn" id="login-btn">Login</a></li>
     </ul>
@@ -22,12 +22,32 @@
     <button id="logout-btn" style="display:none;">Logout</button>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Welcome to VogueMart</h1>
-    <p>Discover the latest fashion trends with premium quality</p>
-    <button id="heroShop">Shop Now</button>
+  <!-- Search Bar -->
+  <section class="search-section">
+    <input type="text" placeholder="Search for products, brands and more">
   </section>
+
+  <!-- Location -->
+  <div class="location-text">
+    Delivering to <span>Davangere - 577005</span>
+  </div>
+
+  <!-- Categories -->
+  <div class="categories-container">
+    <div class="category-box">Men</div>
+    <div class="category-box">Women</div>
+    <div class="category-box">Shoes</div>
+    <div class="category-box">Watches</div>
+    <div class="category-box">Tech</div>
+  </div>
+
+  <!-- Banner -->
+  <section class="banner">
+    <img src="https://img.freepik.com/free-psd/fashion-sale-social-media-template_505751-2971.jpg">
+  </section>
+
+  <!-- Suggestions Title -->
+  <h2 class="suggestion-title">Shadow, Suggested for You</h2>
 
   <!-- Products Section -->
   <section id="products" class="products">
@@ -55,39 +75,6 @@
 
   <!-- Footer -->
   <footer><p>© 2025 VogueMart | All Rights Reserved</p></footer>
-
-  <!-- Firebase Auth Status & Logout Script -->
-  <script type="module">
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-    import { app } from "./firebase-init.js";
-
-    const auth = getAuth(app);
-    const loginBtn = document.getElementById("login-btn");
-    const logoutBtn = document.getElementById("logout-btn");
-    const userStatus = document.getElementById("user-status");
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        userStatus.innerText = "Welcome, " + user.email;
-        loginBtn.style.display = "none";
-        logoutBtn.style.display = "inline-block";
-      } else {
-        userStatus.innerText = "Not Logged In";
-        loginBtn.style.display = "inline-block";
-        logoutBtn.style.display = "none";
-      }
-    });
-
-    logoutBtn.addEventListener("click", () => {
-      signOut(auth)
-        .then(() => {
-          alert("Logged out successfully!");
-        })
-        .catch((error) => {
-          console.error("Logout error:", error);
-        });
-    });
-  </script>
 
 </body>
 </html>
