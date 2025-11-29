@@ -1,103 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VogueMart</title>
   <link rel="stylesheet" href="./Style.css" />
-  <script src="./script.js" defer></script>
+  <script defer src="script.js"></script>
 </head>
+
 <body>
 
-  <!-- TOP TAB BAR (this is the "bottom nav" moved to TOP) -->
-  <div class="top-tabbar" role="navigation" aria-label="Main tabs">
-    <button class="tab active">
-      <span class="tab-icon">🏠</span>
-      <span class="tab-label">Home</span>
-    </button>
-    <button class="tab">
-      <span class="tab-icon">🎮</span>
-      <span class="tab-label">Games</span>
-    </button>
-    <button class="tab">
-      <span class="tab-icon">📁</span>
-      <span class="tab-label">Files</span>
-    </button>
-    <button class="tab">
-      <span class="tab-icon">🛒</span>
-      <span class="tab-label">Cart</span>
-    </button>
-    <button class="tab">
-      <span class="tab-icon">☰</span>
-      <span class="tab-label">Menu</span>
-    </button>
+  <!-- SEARCH AT TOP -->
+  <header class="header">
+    <input type="search" class="search-box" placeholder="Search for products, brands & more">
+  </header>
+
+  <!-- LOCATION TEXT -->
+  <p class="location-note">Add your location here</p>
+
+  <!-- CATEGORY CHIPS -->
+  <div class="category-container">
+    <div class="chip">Clothes</div>
+    <div class="chip">Accessories</div>
+    <div class="chip">Fashion</div>
+    <div class="chip">Shoes</div>
+    <div class="chip">Jewellery</div>
   </div>
 
-  <!-- Main navbar (not fixed) - brand + simple links -->
-  <nav class="navbar" aria-label="Site header">
-    <h1 class="brand">VogueMart</h1>
+  <!-- BANNER -->
+  <section class="banner">
+    <img src="https://img.freepik.com/free-photo/fashion-portrait-woman-with-beautiful-eye-makeup_23-2149667181.jpg" alt="Fashion Banner">
+  </section>
 
-    <div class="nav-right">
-      <p id="user-status" class="user-status">Not Logged</p>
-      <a href="login.html" class="btn login-btn">Login</a>
+  <!-- TITLE -->
+  <h2 class="section-title">Customer Suggestions For You</h2>
+
+  <!-- PRODUCT CARDS -->
+  <section class="product-list">
+    <div class="product-card">
+      <img src="https://assets.ajio.com/medias/sys_master/root/20230701/XrTx/649f5c15a9b42d15c912ad1a/-473Wx593H-441145862-blue-MODEL.jpg">
+      <h3>Blue Denim Jacket</h3>
+      <p class="price">₹1299</p>
+      <button>Add to Cart</button>
     </div>
+
+    <div class="product-card">
+      <img src="https://assets.ajio.com/medias/sys_master/root/20230701/u14I/649f5e18a9b42d15c912ef08/-473Wx593H-441146150-black-MODEL.jpg">
+      <h3>Stylish Leather Bag</h3>
+      <p class="price">₹899</p>
+      <button>Add to Cart</button>
+    </div>
+  </section>
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav">
+    <a href="#">Home</a>
+    <a href="#">Shop</a>
+    <a href="#">Wishlist</a>
+    <a href="#">Account</a>
+    <a href="#">Cart</a>
   </nav>
 
-  <!-- CONTENT (add top spacing equal to tabbar height) -->
-  <main class="main-content">
-    <!-- Search -->
-    <section class="search-section">
-      <input id="global-search" type="search" placeholder="Search for products, brands and more" />
-    </section>
-
-    <!-- Delivering to -->
-    <div class="location-text">Delivering to <strong>Davangere - 577005</strong></div>
-
-    <!-- Category chips (horiz scroll) -->
-    <div class="categories-container">
-      <div class="category-box">Men</div>
-      <div class="category-box">Women</div>
-      <div class="category-box">Shoes</div>
-      <div class="category-box">Watches</div>
-      <div class="category-box">Tech</div>
-      <div class="category-box">Beauty</div>
+  <!-- LOGIN MODAL POPUP -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <h2>Login</h2>
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button class="login-submit">Login</button>
+      <button class="close-btn" onclick="closeModal()">Close</button>
     </div>
+  </div>
 
-    <!-- Banner -->
-    <section class="banner">
-      <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1080&auto=format&fit=crop&ixlib=rb-4.0.3&s=9b7c4b6b6a5d6a5d5b2b9b8f2c8f1a2a" alt="promo banner">
-    </section>
-
-    <!-- Suggestions title -->
-    <h2 class="suggestion-title">Shadow, Suggested for You</h2>
-
-    <!-- Products -->
-    <section id="products" class="products">
-      <div class="product-card">
-        <img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/10686028/2024/6/21/335e6cb9-a51c-4f50-9b23-90775899276a1718972512096-DENNISON-Men-Teal-Blue-Classic-Regular-Fit-Solid-Formal-Shir-1.jpg" alt="shirt">
-        <h3>Classic Cotton Shirt</h3>
-        <p class="price">₹999</p>
-        <button onclick="addToCart('Classic Cotton Shirt', 999)">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://i5.walmartimages.com/seo/Poedagar-Top-Brand-Luxury-Men-Watch-Waterproof-Luminous-Stainless-Steel-Watches-Sport-Quartz-Clock-Mens-Date-Business-Wristwatch-Quartz-Wristwatches_9e8f9e27-a565-433d-a631-0217e7658626.5a77011a5e9db0be8848f49f56f7ce28.jpeg" alt="watch">
-        <h3>Luxury Wrist Watch</h3>
-        <p class="price">₹1799</p>
-        <button onclick="addToCart('Luxury Wrist Watch', 1799)">Add to Cart</button>
-      </div>
-
-      <div class="product-card">
-        <img src="https://5.imimg.com/data5/SELLER/Default/2024/12/469703376/TD/OD/CO/191798954/dual-colour-vegan-striped-premium-shoes-for-men-500x500.png" alt="shoes">
-        <h3>Premium Sneakers</h3>
-        <p class="price">₹2599</p>
-        <button onclick="addToCart('Premium Sneakers', 2599)">Add to Cart</button>
-      </div>
-    </section>
-  </main>
-
-  <footer><p>© 2025 VogueMart | All Rights Reserved</p></footer>
-
-  <!-- keep your firebase/auth module script if used (same as before) -->
 </body>
 </html>
+
