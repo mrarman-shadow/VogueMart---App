@@ -1,84 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>VogueMart</title>
-  <link rel="stylesheet" href="./Style.css">
+  <link rel="stylesheet" href="./Style.css" />
   <script src="./script.js" defer></script>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
+  <!-- TOP TAB BAR (this is the "bottom nav" moved to TOP) -->
+  <div class="top-tabbar" role="navigation" aria-label="Main tabs">
+    <button class="tab active">
+      <span class="tab-icon">🏠</span>
+      <span class="tab-label">Home</span>
+    </button>
+    <button class="tab">
+      <span class="tab-icon">🎮</span>
+      <span class="tab-label">Games</span>
+    </button>
+    <button class="tab">
+      <span class="tab-icon">📁</span>
+      <span class="tab-label">Files</span>
+    </button>
+    <button class="tab">
+      <span class="tab-icon">🛒</span>
+      <span class="tab-label">Cart</span>
+    </button>
+    <button class="tab">
+      <span class="tab-icon">☰</span>
+      <span class="tab-label">Menu</span>
+    </button>
+  </div>
+
+  <!-- Main navbar (not fixed) - brand + simple links -->
+  <nav class="navbar" aria-label="Site header">
     <h1 class="brand">VogueMart</h1>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a id="shopBtn" href="#products">Shop</a></li>
-      <li><a href="cart.html">Cart</a></li>
-      <li><a href="login.html" class="btn" id="login-btn">Login</a></li>
-    </ul>
-    <p id="user-status">Not Logged In</p>
-    <button id="logout-btn" style="display:none;">Logout</button>
+
+    <div class="nav-right">
+      <p id="user-status" class="user-status">Not Logged</p>
+      <a href="login.html" class="btn login-btn">Login</a>
+    </div>
   </nav>
 
-  <!-- Search Bar -->
-  <section class="search-section">
-    <input type="text" placeholder="Search for products, brands and more">
-  </section>
+  <!-- CONTENT (add top spacing equal to tabbar height) -->
+  <main class="main-content">
+    <!-- Search -->
+    <section class="search-section">
+      <input id="global-search" type="search" placeholder="Search for products, brands and more" />
+    </section>
 
-  <!-- Location -->
-  <div class="location-text">
-    Delivering to <span>Davangere - 577005</span>
-  </div>
+    <!-- Delivering to -->
+    <div class="location-text">Delivering to <strong>Davangere - 577005</strong></div>
 
-  <!-- Categories -->
-  <div class="categories-container">
-    <div class="category-box">Men</div>
-    <div class="category-box">Women</div>
-    <div class="category-box">Shoes</div>
-    <div class="category-box">Watches</div>
-    <div class="category-box">Tech</div>
-  </div>
-
-  <!-- Banner -->
-  <section class="banner">
-    <img src="https://img.freepik.com/free-psd/fashion-sale-social-media-template_505751-2971.jpg">
-  </section>
-
-  <!-- Suggestions Title -->
-  <h2 class="suggestion-title">Shadow, Suggested for You</h2>
-
-  <!-- Products Section -->
-  <section id="products" class="products">
-    <div class="product-card">
-      <img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/10686028/2024/6/21/335e6cb9-a51c-4f50-9b23-90775899276a1718972512096-DENNISON-Men-Teal-Blue-Classic-Regular-Fit-Solid-Formal-Shir-1.jpg">
-      <h3>Classic Cotton Shirt</h3>
-      <p class="price">₹999</p>
-      <button onclick="addToCart('Classic Cotton Shirt', 999)">Add to Cart</button>
+    <!-- Category chips (horiz scroll) -->
+    <div class="categories-container">
+      <div class="category-box">Men</div>
+      <div class="category-box">Women</div>
+      <div class="category-box">Shoes</div>
+      <div class="category-box">Watches</div>
+      <div class="category-box">Tech</div>
+      <div class="category-box">Beauty</div>
     </div>
 
-    <div class="product-card">
-      <img src="https://i5.walmartimages.com/seo/Poedagar-Top-Brand-Luxury-Men-Watch-Waterproof-Luminous-Stainless-Steel-Watches-Sport-Quartz-Clock-Mens-Date-Business-Wristwatch-Quartz-Wristwatches_9e8f9e27-a565-433d-a631-0217e7658626.5a77011a5e9db0be8848f49f56f7ce28.jpeg">
-      <h3>Luxury Wrist Watch</h3>
-      <p class="price">₹1799</p>
-      <button onclick="addToCart('Luxury Wrist Watch', 1799)">Add to Cart</button>
-    </div>
+    <!-- Banner -->
+    <section class="banner">
+      <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1080&auto=format&fit=crop&ixlib=rb-4.0.3&s=9b7c4b6b6a5d6a5d5b2b9b8f2c8f1a2a" alt="promo banner">
+    </section>
 
-    <div class="product-card">
-      <img src="https://5.imimg.com/data5/SELLER/Default/2024/12/469703376/TD/OD/CO/191798954/dual-colour-vegan-striped-premium-shoes-for-men-500x500.png">
-      <h3>Premium Sneakers</h3>
-      <p class="price">₹2599</p>
-      <button onclick="addToCart('Premium Sneakers', 2599)">Add to Cart</button>
-    </div>
-  </section>
+    <!-- Suggestions title -->
+    <h2 class="suggestion-title">Shadow, Suggested for You</h2>
 
-  <!-- Footer -->
+    <!-- Products -->
+    <section id="products" class="products">
+      <div class="product-card">
+        <img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/10686028/2024/6/21/335e6cb9-a51c-4f50-9b23-90775899276a1718972512096-DENNISON-Men-Teal-Blue-Classic-Regular-Fit-Solid-Formal-Shir-1.jpg" alt="shirt">
+        <h3>Classic Cotton Shirt</h3>
+        <p class="price">₹999</p>
+        <button onclick="addToCart('Classic Cotton Shirt', 999)">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://i5.walmartimages.com/seo/Poedagar-Top-Brand-Luxury-Men-Watch-Waterproof-Luminous-Stainless-Steel-Watches-Sport-Quartz-Clock-Mens-Date-Business-Wristwatch-Quartz-Wristwatches_9e8f9e27-a565-433d-a631-0217e7658626.5a77011a5e9db0be8848f49f56f7ce28.jpeg" alt="watch">
+        <h3>Luxury Wrist Watch</h3>
+        <p class="price">₹1799</p>
+        <button onclick="addToCart('Luxury Wrist Watch', 1799)">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://5.imimg.com/data5/SELLER/Default/2024/12/469703376/TD/OD/CO/191798954/dual-colour-vegan-striped-premium-shoes-for-men-500x500.png" alt="shoes">
+        <h3>Premium Sneakers</h3>
+        <p class="price">₹2599</p>
+        <button onclick="addToCart('Premium Sneakers', 2599)">Add to Cart</button>
+      </div>
+    </section>
+  </main>
+
   <footer><p>© 2025 VogueMart | All Rights Reserved</p></footer>
 
+  <!-- keep your firebase/auth module script if used (same as before) -->
 </body>
 </html>
-
-
-
-
