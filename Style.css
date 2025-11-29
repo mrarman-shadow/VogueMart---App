@@ -486,5 +486,52 @@ nav .login-btn { background:#ff4c4c; color:#fff; padding:6px 10px; border-radius
   .search-section input { font-size: 15px; }
   .top-tabbar .tab .tab-icon { font-size: 17px; }
 }
+body { background:#002b36; color:#f8d0a4; font-family:Arial; margin:0; }
+
+/* Search Section */
+.header { padding:12px; }
+.search-box {
+  width:100%; padding:12px; border-radius:10px; border:none;
+  background:white; font-size:16px;
+}
+
+.location-note { padding-left:15px; font-size:14px; color:#f8d0a4; }
+
+.category-container {
+  display:flex; overflow-x:auto; gap:10px; padding:10px;
+}
+.chip {
+  padding:8px 14px; background:#f8d0a4; color:#002b36;
+  border-radius:20px; font-weight:bold; white-space:nowrap;
+}
+
+.banner img { width:100%; border-radius:12px; }
+
+/* Title */
+.section-title { padding:10px 14px; font-size:20px; }
+
+/* Product cards */
+.product-list { display:flex; gap:12px; padding:10px; overflow-x:auto; }
+.product-card {
+  min-width:160px; background:white; color:#002b36;
+  border-radius:12px; padding:10px; text-align:center;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position:fixed; bottom:0; left:0; right:0;
+  background:white; display:flex; justify-content:space-around;
+  padding:10px; box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+.bottom-nav a { color:#002b36; font-weight:bold; text-decoration:none; }
+
+/* Login Modal */
+.modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); display:flex; justify-content:center; align-items:center; }
+.modal-content {
+  background:white; padding:20px; border-radius:12px;
+  color:#002b36; width:80%; max-width:300px; text-align:center;
+}
+.modal-content input { width:100%; margin:10px 0; padding:10px; }
+
 
 
