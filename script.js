@@ -25,4 +25,11 @@ function addToCart(name, price) {
   localStorage.setItem("cart", JSON.stringify(cart));
   alert(`Added "${name}" to Cart 🛒\nGo to Cart to view`);
 }
+function openModal() {
+  document.getElementById("loginModal").style.display = "flex";
+}
+function closeModal() {
+  document.getElementById("loginModal").style.display = "none";
+}
+
 
