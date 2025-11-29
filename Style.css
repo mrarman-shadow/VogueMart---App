@@ -1,3 +1,4 @@
+
 /* ===== VogueMart Theme ===== */
 body {
   margin: 0;
@@ -532,6 +533,84 @@ body { background:#002b36; color:#f8d0a4; font-family:Arial; margin:0; }
   color:#002b36; width:80%; max-width:300px; text-align:center;
 }
 .modal-content input { width:100%; margin:10px 0; padding:10px; }
+/* Search Section */
+.search-section {
+  padding: 10px;
+  text-align: center;
+  background: white;
+}
+.search-section input {
+  width: 90%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Location text */
+.location-text {
+  margin: 8px 12px;
+  font-size: 14px;
+  color: gray;
+}
+
+/* Categories */
+.categories {
+  display: flex;
+  overflow-x: scroll;
+  gap: 10px;
+  padding: 10px;
+}
+.cat-item {
+  padding: 8px 14px;
+  background: #111;
+  color: white;
+  font-size: 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Banner */
+.banner img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Product Grid */
+.products {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  overflow-x: scroll;
+}
+.product-card {
+  width: 160px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Bottom Nav */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  background: #000;
+  color: white;
+}
+.bottom-nav a {
+  text-align: center;
+  font-size: 12px;
+  color: white;
+}
+.bottom-nav i {
+  font-size: 18px;
+}
+
+
 
 
 
