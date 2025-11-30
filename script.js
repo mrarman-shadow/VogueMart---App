@@ -1,35 +1,52 @@
-// script.js
-
-// Smooth scroll for "Shop Now" button in hero section
+// Smooth scroll for "Shop Now" button
 document.getElementById("heroShop").addEventListener("click", () => {
   document.getElementById("products").scrollIntoView({ behavior: "smooth" });
 });
 
-// Smooth scroll for "Shop" link in navbar
 document.getElementById("shopBtn").addEventListener("click", () => {
   document.getElementById("products").scrollIntoView({ behavior: "smooth" });
 });
 
-// Add product to cart and save in localStorage
-function addToCart(name, price) {
+// Unified Add to Cart Function
+function addToCart(name, price, image) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  
-  // Check if product already exists in cart
-  const existingItem = cart.find(item => item.name === name);
-  if (existingItem) {
-    existingItem.qty += 1;
+
+  const existing = cart.find(item => item.name === name);
+  if (existing) {
+    existing.qty += 1;
   } else {
-    cart.push({ name, price, qty: 1 });
+    cart.push({ name, price, image, qty: 1 });
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
-  alert(`Added "${name}" to Cart 🛒\nGo to Cart to view`);
+  alert(`Added "${name}" to Cart 🛒`);
 }
-function openModal() {
-  document.getElementById("loginModal").style.display = "flex";
-}
-function closeModal() {
-  document.getElementById("loginModal").style.display = "none";
+function addToWishlist(name, price, image) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  const exists = wishlist.find(item => item.name === name);
+  if (!exists) {
+    wishlist.push({ name, price, image });
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    alert("Added to Wishlist ❤️");
+  } else {
+    alert("Already in Wishlist ❤️");
+  }
+} 
+
+// ==================== ON PAGE LOAD ================================
+window.onload = () => {
+  loadCartItems();
+  loadWishlistItems();
+  updateCounts();
+};
+function addToWishlist(name, price, image) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  wishlist.push({ name, price, image });
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+  alert("Added to Wishlist ❤️");
 }
 
 
