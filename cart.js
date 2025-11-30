@@ -1,6 +1,5 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let cartContainer = document.getElementById("cartItems");
-let totalPrice = 0;
 
 function displayCart() {
   if (cart.length === 0) {
@@ -12,14 +11,20 @@ function displayCart() {
 
   cartContainer.innerHTML = cart.map((item, index) => `
     <div class="cart-item">
-      <h3>${item.name}</h3>
-      <p>₹${item.price}</p>
-      <div>
-        <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-        <span style="margin: 0 10px; font-size:18px; color:#024558">${item.qty}</span>
-        <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+      <img src="${item.image}" class="cart-img">
+
+      <div class="cart-details">
+        <h3>${item.name}</h3>
+        <p>₹${item.price}</p>
+
+        <div class="quantity-controls">
+          <button onclick="changeQty(${index}, -1)">-</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty(${index}, 1)">+</button>
+        </div>
+
+        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
       </div>
-      <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
     </div>
   `).join("");
 
@@ -48,3 +53,4 @@ function updateSummary() {
 }
 
 displayCart();
+
