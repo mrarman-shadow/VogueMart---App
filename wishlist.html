@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist - VogueMart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="wishlist-page">
+  <header>
+    <h2>My Wishlist ❤️</h2>
+  </header>
+
+  <div id="wishlistItems" class="wishlist-grid"></div>
+<script>
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  let box = document.getElementById("wishlistItems");
+
+  box.innerHTML = wishlist.map((item, index) => `
+    <div class="wishlist-item">
+      <img src="${item.image}" alt="${item.name}">
+      <h3>${item.name}</h3>
+      <p>₹${item.price}</p>
+
+      <button class="cart-btn" data-name="${item.name}" data-price="${item.price}" data-image="${item.image}">Add to Cart 🛒</button>
+      <button onclick="removeWishlist(${index})">Remove ❌</button>
+    </div>
+  `).join("");
+
+  function removeWishlist(i){
+    wishlist.splice(i, 1);
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    location.reload();
+  }
+
+  // Make Add to Cart buttons work
+  document.querySelectorAll('.cart-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.getAttribute('data-name');
+      const price = parseInt(btn.getAttribute('data-price'));
+      const image = btn.getAttribute('data-image');
+
+      // Call your global addToCart from script.js
+      if (typeof addToCart === 'function') {
+        addToCart(name, price, image);
+      } else {
+        console.error('addToCart function not found!');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
