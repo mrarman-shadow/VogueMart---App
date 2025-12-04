@@ -816,6 +816,19 @@ body {
 .theme-btn-mobile:active {
   transform: scale(0.9);
 }
+.logo img {
+  height: 40px;        /* size for mobile */
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .logo img {
+    height: 55px;      /* size for desktop */
+  }
+}
+
 
 
 
