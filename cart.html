@@ -4,34 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cart - VogueMart</title>
- <link rel="stylesheet" href="./Style.css" />
+
+  <link rel="stylesheet" href="Style.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script defer src="cart.js"></script>
 </head>
 <body>
 
-<nav class="navbar">
-  <h1 class="brand">VogueMart</h1>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#products">Shop</a></li>
-    <li><a href="#">Cart</a></li>
-  </ul>
-</nav>
+  <!-- Top Navbar -->
+  <nav class="navbar">
+    <h1 class="brand">VogueMart</h1>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="wishlist.html">Wishlist</a></li>
+      <li><a href="login.html">Account</a></li>
+      <li><a href="cart.html">Cart</a></li>
+    </ul>
+  </nav>
 
-<section class="cart-page">
-  <div class="cart-left" id="cartItems"></div>
+  <section class="cart-page">
+    <div class="cart-left" id="cartItems"></div>
 
-  <div class="cart-summary">
-    <h2>Order Summary</h2>
-    <p id="totalItems"></p>
-    <h3 id="totalPrice"></h3>
-    <button onclick="window.location.href='payment.html'" class="checkout-btn">Proceed to Checkout</button>
+    <div class="cart-summary">
+      <h2>Your Order Summary</h2>
+      <p id="totalItems"></p>
+      <h3 id="totalPrice"></h3>
+      <button onclick="window.location.href='payment.html'"
+              class="checkout-btn">
+        Proceed to Checkout
+      </button>
+      <button onclick="window.location.href='shop.html'"
+              class="checkout-btn"
+              style="margin-top:10px; background:#024558; color:#fff;">
+        Continue Shopping
+      </button>
+    </div>
+  </section>
+
+  <!-- Bottom Navigation (phone) -->
+  <div class="bottom-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="shop.html">🛍 Shop</a>
+    <a href="wishlist.html">❤️ Wishlist</a>
+    <a href="login.html">👤 Account</a>
+    <a href="cart.html">🛒 Cart</a>
   </div>
-</section>
 
-<footer>
-  <p>© 2025 VogueMart | All Rights Reserved</p>
-</footer>
+  <footer>
+    <p>© 2025 VogueMart | All Rights Reserved</p>
+  </footer>
 
 </body>
 </html>
