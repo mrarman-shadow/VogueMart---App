@@ -784,6 +784,23 @@ body {
   background: #ffffff;
   color: #024558;
 }
+/* Make theme button visible on mobile always */
+.theme-btn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+}
+
+/* On small screens, reduce size */
+@media (max-width: 768px) {
+  .theme-btn {
+    font-size: 20px;
+    right: 10px;
+  }
+}
+
 
 
 
