@@ -1,45 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VogueMart</title>
- <link rel="stylesheet" href="./Style.css" />
+  <link rel="stylesheet" href="./Style.css" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script defer src="script.js"></script>
 </head>
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <h1 class="brand">VogueMart</h1>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a id="shopBtn">Shop</a></li>
-      <li><a href="cart.html">Cart</a></li>
-      <li><a href="login.html" class="btn" id="login-btn">Login</a></li>
-    </ul>
-    <p id="user-status">Not Logged In</p>
-    <button id="logout-btn" style="display:none;">Logout</button>
-  </nav>
+ <nav class="navbar">
+  <h1 class="brand">VogueMart</h1>
 
-  <!-- Search Bar & Location -->
-  <div class="search-container">
-    <input type="text" id="search-bar" placeholder="Search for products...">
-  </div>
-  <p class="location-text">📍 Add your location here 📍</p>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="wishlist.html">Wishlist</a></li>
+    <li><a href="login.html">Account</a></li>
+    <li><a href="cart.html">Cart</a></li>
+  </ul>
 
-  <!-- Category Section -->
-  <div class="category-section">
-    <button>Clothes</button>
-    <button>Accessories</button>
-    <button>Shoes</button>
-    <button>Fashion</button>
-    <button>Jewellery</button>
-  </div>
+  <!-- Dark mode toggle OUTSIDE UL -->
+  <button id="themeToggle" class="theme-btn">🌙</button>
+</nav>
 
-  <!-- Banner Section -->
-  <section class="banner">
-    <img src= "https://www.hemswell-antiques.com/images/uploads/blog_images/c48297806d52d413ff70520b143a92492dd3c02b_bEu7.jpeg" alt="VogueMart Banner">
+
+
+  <!-- ===== VogueMart Premium Search (HOME) ===== -->
+  <section class="vm-search-hero vm-search-hero--home">
+    <div class="vm-search-bar">
+      <i class="fa-solid fa-magnifying-glass vm-search-icon"></i>
+      <input
+        type="text"
+        id="search-bar"
+        class="vm-search-input"
+        placeholder="Search for shirts, sneakers, watches..."
+      />
+    </div>
+
+    <p class="vm-location-text">
+      📍 Delivering to <span>Add your location</span>
+    </p>
+
+    <div class="vm-chip-row">
+      <button class="vm-chip vm-chip-active">All</button>
+      <button class="vm-chip">Clothes</button>
+      <button class="vm-chip">Shoes</button>
+      <button class="vm-chip">Accessories</button>
+    </div>
   </section>
 
   <!-- Hero Section -->
@@ -47,6 +56,11 @@
     <h1>Welcome to VogueMart</h1>
     <p>Discover the latest fashion trends with premium quality</p>
     <button id="heroShop">Shop Now</button>
+  </section>
+
+  <!-- Banner Section -->
+  <section class="banner">
+    <img src= "https://www.hemswell-antiques.com/images/uploads/blog_images/c48297806d52d413ff70520b143a92492dd3c02b_bEu7.jpeg" alt="VogueMart Banner">
   </section>
 
   <!-- Products Section -->
@@ -128,8 +142,7 @@
   </script>
 
 </body>
-</html>
-
+</html> 
 
 
 
