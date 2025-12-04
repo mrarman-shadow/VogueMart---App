@@ -4,53 +4,91 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wishlist - VogueMart</title>
-<link rel="stylesheet" href="./Style.css" />
+
+  <!-- same CSS + icons + script as other pages -->
+  <link rel="stylesheet" href="./Style.css" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script defer src="script.js"></script>
 </head>
 
 <body class="wishlist-page">
+
+  <!-- Top Navbar -->
+  <nav class="navbar">
+    <h1 class="brand">VogueMart</h1>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="wishlist.html">Wishlist</a></li>
+      <li><a href="login.html">Account</a></li>
+      <li><a href="cart.html">Cart</a></li>
+    </ul>
+  </nav>
+
   <header>
     <h2>My Wishlist ❤️</h2>
   </header>
 
   <div id="wishlistItems" class="wishlist-grid"></div>
-<script>
-  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-  let box = document.getElementById("wishlistItems");
 
-  box.innerHTML = wishlist.map((item, index) => `
-    <div class="wishlist-item">
-      <img src="${item.image}" alt="${item.name}">
-      <h3>${item.name}</h3>
-      <p>₹${item.price}</p>
+  <!-- Bottom Navigation (phone) -->
+  <div class="bottom-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="shop.html">🛍 Shop</a>
+    <a href="wishlist.html">❤️ Wishlist</a>
+    <a href="login.html">👤 Account</a>
+    <a href="cart.html">🛒 Cart</a>
+  </div>
 
-      <button class="cart-btn" data-name="${item.name}" data-price="${item.price}" data-image="${item.image}">Add to Cart 🛒</button>
-      <button onclick="removeWishlist(${index})">Remove ❌</button>
-    </div>
-  `).join("");
+  <script>
+    // Load wishlist from localStorage
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const box = document.getElementById("wishlistItems");
 
-  function removeWishlist(i){
-    wishlist.splice(i, 1);
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
-    location.reload();
-  }
+    if (wishlist.length === 0) {
+      box.innerHTML = `<p style="color:#F8D0A4; text-align:center;">Your wishlist is empty 😴</p>`;
+    } else {
+      box.innerHTML = wishlist.map((item, index) => `
+        <div class="wishlist-item">
+          <img src="${item.image}" alt="${item.name}">
+          <h3>${item.name}</h3>
+          <p>₹${item.price}</p>
 
-  // Make Add to Cart buttons work
-  document.querySelectorAll('.cart-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const name = btn.getAttribute('data-name');
-      const price = parseInt(btn.getAttribute('data-price'));
-      const image = btn.getAttribute('data-image');
+          <button class="cart-btn"
+                  data-name="${item.name}"
+                  data-price="${item.price}"
+                  data-image="${item.image}">
+            Add to Cart 🛒
+          </button>
+          <button onclick="removeWishlist(${index})">Remove ❌</button>
+        </div>
+      `).join("");
+    }
 
-      // Call your global addToCart from script.js
-      if (typeof addToCart === 'function') {
-        addToCart(name, price, image);
-      } else {
-        console.error('addToCart function not found!');
-      }
+    function removeWishlist(i) {
+      wishlist.splice(i, 1);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      location.reload();
+    }
+
+    // Make "Add to Cart" buttons work with global addToCart()
+    document.querySelectorAll(".cart-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const name = btn.getAttribute("data-name");
+        const price = parseInt(btn.getAttribute("data-price"));
+        const image = btn.getAttribute("data-image");
+
+        if (typeof addToCart === "function") {
+          addToCart(name, price, image);
+        } else {
+          console.error("addToCart function not found!");
+        }
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
 </html>
+
 
