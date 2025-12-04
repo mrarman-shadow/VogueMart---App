@@ -800,6 +800,23 @@ body {
     right: 10px;
   }
 }
+/* Dark mode button for mobile bottom nav */
+.theme-btn-mobile {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  padding: 4px 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.theme-btn-mobile:active {
+  transform: scale(0.9);
+}
+
 
 
 
