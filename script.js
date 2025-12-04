@@ -343,5 +343,28 @@ document.addEventListener("DOMContentLoaded", () => {
     notify("VogueMart", "Premium Notification Working!", "info");
   }
 });
+const themeToggleMobile = document.getElementById("themeToggleMobile");
+
+if (themeToggleMobile) {
+
+  // Apply saved theme on load
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    themeToggleMobile.textContent = "☀️";
+  }
+
+  themeToggleMobile.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+      localStorage.setItem("theme", "dark");
+      themeToggleMobile.textContent = "☀️";
+    } else {
+      localStorage.setItem("theme", "light");
+      themeToggleMobile.textContent = "🌙";
+    }
+  });
+}
+
 
 
