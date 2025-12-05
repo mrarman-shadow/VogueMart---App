@@ -51,9 +51,22 @@
     button:hover {
       opacity: 0.9;
     }
+
+    .admin-btn {
+      display: block;
+      padding: 12px;
+      margin: 25px auto;
+      max-width: 320px;
+      text-align: center;
+      border-radius: 10px;
+      background: #024558;
+      color: #f8d0a4;
+      font-weight: 600;
+      text-decoration: none;
+    }
   </style>
 
-  <!-- User Protect -->
+  <!-- User Protection -->
   <script>
     if (!localStorage.getItem("userEmail")) {
       window.location.href = "login.html";
@@ -62,6 +75,8 @@
 </head>
 
 <body>
+
+  <a href="admin-login.html" class="admin-btn">Admin Login</a>
 
   <div class="account-box">
     <h2>Your Account</h2>
