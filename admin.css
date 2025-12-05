@@ -379,3 +379,201 @@ input, textarea {
 .delete-btn:hover {
   opacity: 0.8;
 }
+/* ======================= GLOBAL THEME ======================= */
+:root {
+  --bg: #024558;
+  --gold: #F8D0A4;
+  --white: #ffffff;
+  --text-dark: #024558;
+  --text-light: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: var(--bg);
+  color: var(--gold);
+  padding: 25px 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
+  transition: 0.3s ease-in-out;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 800;
+}
+
+.sidebar ul li {
+  list-style: none;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.3s;
+  color: var(--white);
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+  background: var(--gold);
+  color: var(--text-dark);
+  transform: translateX(5px);
+}
+
+/* =============== MOBILE SIDEBAR =============== */
+.mobile-toggle {
+  display: none;
+  font-size: 32px;
+  color: var(--gold);
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    left: -260px;
+  }
+
+  .sidebar.show {
+    left: 0;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .main {
+    margin-left: 0 !important;
+  }
+}
+
+/* ================= TOP NAV ================= */
+.navbar {
+  background: #024558;
+  padding: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px;
+  margin-left: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    margin-left: 0;
+  }
+}
+
+/* ================= MAIN ================= */
+.main {
+  margin-left: 250px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .main {
+    margin-left: 0;
+  }
+}
+
+/* ================= CARDS ================= */
+.card-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: var(--gold);
+  padding: 25px;
+  border-radius: 10px;
+  flex: 1;
+  text-align: center;
+  color: var(--text-dark);
+  min-width: 150px;
+  font-weight: bold;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+/* ================= TABLES ================= */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+th {
+  background: var(--bg);
+  color: var(--gold);
+  padding: 12px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* ================= FORM ================= */
+.form-container {
+  background: white;
+  color: #024558;
+  padding: 25px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #024558;
+  color: var(--gold);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.hidden {
+  display: none;
+}
+
