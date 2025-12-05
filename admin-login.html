@@ -1,27 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Admin Login</title>
- <link rel="stylesheet" href="./Style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login – VogueMart</title>
 
-
+    <!-- Correct CSS (GitHub is case-sensitive) -->
+    <link rel="stylesheet" href="Style.css" />
 </head>
+
 <body>
 
-<h2>Admin Login</h2>
+<h2 class="admin-login-title">Admin Login</h2>
 
-<form id="adminLoginForm">
-  <input type="email" id="adminEmail" placeholder="Admin Email" required>
-  <input type="password" id="adminPassword" placeholder="Password" required>
-  <button type="submit">Login</button>
+<!-- ADMIN LOGIN FORM -->
+<form id="adminLoginForm" class="admin-login-box">
+    <input type="email" id="adminEmail" placeholder="Admin Email" required />
+    <input type="password" id="adminPassword" placeholder="Password" required />
+    <button type="submit" id="adminLoginBtn">Login</button>
 </form>
 
-<p id="adminError" style="color:red;"></p>
+<p id="adminError" style="color:red; text-align:center; margin-top:10px;"></p>
 
-<script src="./admin-login.js"></script>
- 
+<!-- FIREBASE ADMIN LOGIN LOGIC -->
+<script type="module">
+    import { app } from "./firebase-init.js";
+    import {
+        getAuth,
+        signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+
+    const auth = getAuth(app);
+
+    const form = document.getElementById("adminLoginForm");
+    const errorBox = document.getElementById("adminError");
+    const loginBtn = document.getElementById("adminLoginBtn");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        errorBox.textContent = "";
+        loginBtn.disabled = true;
+        loginBtn.innerText = "Checking...";
+
+        const email = adminEmail.value;
+        const password = adminPassword.value;
+
+        try {
+            const res = await signInWithEmailAndPassword(auth, email, password);
+
+            // Save login state
+            localStorage.setItem("adminEmail", email);
+
+            // Redirect to admin dashboard
+            window.location.href = "admin.html";
+
+        } catch (err) {
+            errorBox.textContent = "Invalid admin credentials!";
+            loginBtn.disabled = false;
+            loginBtn.innerText = "Login";
+        }
+    });
+</script>
 
 </body>
 </html>
-
 
