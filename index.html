@@ -1,168 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VogueMart</title>
-  <link rel="stylesheet" href="./Style.css" />
+
+  <!-- MAIN CSS -->
+  <link rel="stylesheet" href="Style.css">
+
+  <!-- Icons -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <script src="./script.js"></script>
-<script src="./firebase-init.js"></script>
-<script src="./login.js"></script>
-
-
-
 </head>
+
 <body>
 
-  <!-- Navbar -->
- <nav class="navbar">
+<!-- NAVBAR -->
+<nav class="navbar">
   <h1 class="brand">VogueMart</h1>
 
-<ul class="nav-links">
-  <li><a href="index.html">Home</a></li>
-  <li><a href="shop.html">Shop</a></li>
-  <li><a href="wishlist.html">Wishlist</a></li>
-  <li><a href="account.html">Account</a></li>
-  <li><a href="cart.html">Cart</a></li>
- <li><a href="admin-login.html" style="color:red;">Admin</a></li>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="wishlist.html">Wishlist</a></li>
+    <li><a href="account.html">Account</a></li>
+    <li><a href="cart.html">Cart</a></li>
+    <li><a href="admin-login.html" style="color:red;">Admin</a></li>
+    <button id="logoutBtn" class="logout">Logout</button>
+  </ul>
 
-<button id="logoutBtn" class="logout">Logout</button>
-
-</ul>
-
-
-  <!-- Dark mode toggle OUTSIDE UL -->
+  <!-- Dark Mode -->
   <button id="themeToggle" class="theme-btn">🌙</button>
 </nav>
 
 
+<!-- SEARCH SECTION -->
+<section class="vm-search-hero vm-search-hero--home">
+  <div class="vm-search-bar">
+    <i class="fa-solid fa-magnifying-glass vm-search-icon"></i>
+    <input type="text" id="search-bar" class="vm-search-input"
+           placeholder="Search for shirts, sneakers, watches...">
+  </div>
 
-  <!-- ===== VogueMart Premium Search (HOME) ===== -->
-  <section class="vm-search-hero vm-search-hero--home">
-    <div class="vm-search-bar">
-      <i class="fa-solid fa-magnifying-glass vm-search-icon"></i>
-      <input
-        type="text"
-        id="search-bar"
-        class="vm-search-input"
-        placeholder="Search for shirts, sneakers, watches..."
-      />
-    </div>
+  <p class="vm-location-text">📍 Delivering to <span>Add your location</span></p>
 
-    <p class="vm-location-text">
-      📍 Delivering to <span>Add your location</span>
-    </p>
+  <div class="vm-chip-row">
+    <button class="vm-chip vm-chip-active">All</button>
+    <button class="vm-chip">Clothes</button>
+    <button class="vm-chip">Shoes</button>
+    <button class="vm-chip">Accessories</button>
+  </div>
+</section>
 
-    <div class="vm-chip-row">
-      <button class="vm-chip vm-chip-active">All</button>
-      <button class="vm-chip">Clothes</button>
-      <button class="vm-chip">Shoes</button>
-      <button class="vm-chip">Accessories</button>
-    </div>
-  </section>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Welcome to VogueMart</h1>
-    <p>Discover the latest fashion trends with premium quality</p>
-    <button id="heroShop">Shop Now</button>
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <h1>Welcome to VogueMart</h1>
+  <p>Discover the latest fashion trends with premium quality</p>
+  <button id="heroShop">Shop Now</button>
+</section>
 
-  <!-- Banner Section -->
-  <section class="banner">
-    <img src= "https://www.hemswell-antiques.com/images/uploads/blog_images/c48297806d52d413ff70520b143a92492dd3c02b_bEu7.jpeg" alt="VogueMart Banner">
-  </section>
 
-  <!-- Products Section -->
-  <h2 class="suggestion-title">Customers, Suggestions For You </h2>
-  <section id="products" class="products">
-    <div class="product-card">
-      <img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/10686028/2024/6/21/335e6cb9-a51c-4f50-9b23-90775899276a1718972512096-DENNISON-Men-Teal-Blue-Classic-Regular-Fit-Solid-Formal-Shir-1.jpg">
-      <h3>Classic Cotton Shirt</h3>
-      <p class="price">₹999</p>
-      <button onclick="addToCart('Classic Cotton Shirt', 999, 'https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/10686028/2024/6/21/335e6cb9-a51c-4f50-9b23-90775899276a1718972512096-DENNISON-Men-Teal-Blue-Classic-Regular-Fit-Solid-Formal-Shir-1.jpg')">
-  Add to Cart
-</button>
-    </div>
+<!-- BANNER -->
+<section class="banner">
+  <img src="https://www.hemswell-antiques.com/images/uploads/blog_images/c48297806d52d413ff70520b143a92492dd3c02b_bEu7.jpeg"
+       alt="Banner">
+</section>
 
-    <div class="product-card">
-      <img src="https://i5.walmartimages.com/seo/Poedagar-Top-Brand-Luxury-Men-Watch-Waterproof-Luminous-Stainless-Steel-Watches-Sport-Quartz-Clock-Mens-Date-Business-Wristwatch-Quartz-Wristwatches_9e8f9e27-a565-433d-a631-0217e7658626.5a77011a5e9db0be8848f49f56f7ce28.jpeg">
-      <h3>Luxury Wrist Watch</h3>
-      <p class="price">₹1799</p>
-      <button onclick="addToCart('Luxury Wrist Watch', 1799, 'https://i5.walmartimages.com/seo/Poedagar-Top-Brand-Luxury-Men-Watch-Waterproof-Luminous-Stainless-Steel-Watches-Sport-Quartz-Clock-Mens-Date-Business-Wristwatch-Quartz-Wristwatches_9e8f9e27-a565-433d-a631-0217e7658626.5a77011a5e9db0be8848f49f56f7ce28.jpeg')">
-  Add to Cart
-</button>
-    </div>
 
-    <div class="product-card">
-      <img src="https://5.imimg.com/data5/SELLER/Default/2024/12/469703376/TD/OD/CO/191798954/dual-colour-vegan-striped-premium-shoes-for-men-500x500.png">
-      <h3>Premium Sneakers</h3>
-      <p class="price">₹2599</p>
-      <button onclick="addToCart('Premium Sneakers', 2599, 'https://5.imimg.com/data5/SELLER/Default/2024/12/469703376/TD/OD/CO/191798954/dual-colour-vegan-striped-premium-shoes-for-men-500x500.png')">
-  Add to Cart
-</button>
+<!-- PRODUCTS -->
+<h2 class="suggestion-title">Customers, Suggestions For You</h2>
 
-    </div>
-  </section>
+<section id="products" class="products">
 
-<!-- Bottom Navigation -->
+  <div class="product-card">
+    <img src="https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/10686028/2024/6/21/335e6cb9-a51c-4f50-9b23-90775899276a1718972512096-DENNISON-Men-Teal-Blue-Classic-Regular-Fit-Solid-Formal-Shir-1.jpg">
+    <h3>Classic Cotton Shirt</h3>
+    <p class="price">₹999</p>
+    <button onclick="addToCart('Classic Cotton Shirt',999,'https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/10686028/2024/6/21/335e6cb9-a51c-4f50-9b23-90775899276a1718972512096-DENNISON-Men-Teal-Blue-Classic-Regular-Fit-Solid-Formal-Shir-1.jpg')">Add to Cart</button>
+  </div>
+
+  <div class="product-card">
+    <img src="https://i5.walmartimages.com/seo/Poedagar-Top-Brand-Luxury-Men-Watch-Waterproof-Luminous-Stainless-Steel-Watches-Sport-Quartz-Clock-Mens-Date-Business-Wristwatch-Quartz-Wristwatches_9e8f9e27-a565-433d-a631-0217e7658626.5a77011a5e9db0be8848f49f56f7ce28.jpeg">
+    <h3>Luxury Wrist Watch</h3>
+    <p class="price">₹1799</p>
+    <button onclick="addToCart('Luxury Wrist Watch',1799,'https://i5.walmartimages.com/seo/Poedagar-Top-Brand-Luxury-Men-Watch-Waterproof-Luminous-Stainless-Steel-Watches-Sport-Quartz-Clock-Mens-Date-Business-Wristwatch-Quartz-Wristwatches_9e8f9e27-a565-433d-a631-0217e7658626.5a77011a5e9db0be8848f49f56f7ce28.jpeg')">Add to Cart</button>
+  </div>
+
+  <div class="product-card">
+    <img src="https://5.imimg.com/data5/SELLER/Default/2024/12/469703376/TD/OD/CO/191798954/dual-colour-vegan-striped-premium-shoes-for-men-500x500.png">
+    <h3>Premium Sneakers</h3>
+    <p class="price">₹2599</p>
+    <button onclick="addToCart('Premium Sneakers',2599,'https://5.imimg.com/data5/SELLER/Default/2024/12/469703376/TD/OD/CO/191798954/dual-colour-vegan-striped-premium-shoes-for-men-500x500.png')">Add to Cart</button>
+  </div>
+
+</section>
+
+
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
   <a href="index.html">🏠 Home</a>
-  <a id="shopBtn2" href="shop.html">🛍 Shop</a>
+  <a href="shop.html">🛍 Shop</a>
   <a href="wishlist.html">❤️ Wishlist</a>
   <a href="login.html">👤 Account</a>
   <a href="cart.html">🛒 Cart</a>
 </div>
 
 
-  <!-- Footer -->
-  <footer><p>© 2025 VogueMart | All Rights Reserved</p></footer>
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 VogueMart | All Rights Reserved</p>
+</footer>
 
-  <!-- Firebase Auth Status & Logout Script -->
-  <script type="module">
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-    import { app } from "./firebase-init.js";
 
-    const auth = getAuth(app);
-    const loginBtn = document.getElementById("login-btn");
-    const logoutBtn = document.getElementById("logout-btn");
-    const userStatus = document.getElementById("user-status");
+<!-- SCRIPTS -->
+<script src="firebase-init.js"></script>
+<script src="script.js"></script>
+<script src="login.js"></script>
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        userStatus.innerText = "Welcome, " + user.email;
-        loginBtn.style.display = "none";
-        logoutBtn.style.display = "inline-block";
-      } else {
-        userStatus.innerText = "Not Logged In";
-        loginBtn.style.display = "inline-block";
-        logoutBtn.style.display = "none";
-      }
-    });
-
-    logoutBtn.addEventListener("click", () => {
-      signOut(auth)
-        .then(() => {
-          alert("Logged out successfully!");
-        })
-        .catch((error) => {
-          console.error("Logout error:", error);
-        });
-    });
-  </script>
-  <script>
-document.addEventListener("keydown", e => {
-  if (e.key === "A") window.location.href = "admin.html";
-});
+<script>
+document.getElementById("heroShop").onclick = () => {
+  window.location.href = "shop.html";
+};
 </script>
 
-
 </body>
-</html> 
-
-
-
+</html>
 
 
 
