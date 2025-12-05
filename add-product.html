@@ -12,11 +12,13 @@
   <!-- Admin CSS -->
   <link rel="stylesheet" href="admin.css" />
 </head>
+
 <body>
 
+<!-- ADMIN LOGIN CHECK -->
 <script>
   if (!localStorage.getItem("adminEmail")) {
-    window.location.href = "login.html";
+    window.location.href = "admin-login.html";
   }
 </script>
 
@@ -39,8 +41,10 @@
   <span id="menuBtn">☰</span>
 
   <div class="dropdown profile ms-auto">
-    <img src="https://via.placeholder.com/40" data-bs-toggle="dropdown" />
-    <span data-bs-toggle="dropdown">Admin</span>
+    <img src="https://via.placeholder.com/40"
+         data-bs-toggle="dropdown" class="profile-img" />
+
+    <span class="profile-name" data-bs-toggle="dropdown">Admin</span>
 
     <ul class="dropdown-menu dropdown-menu-end">
       <li><a class="dropdown-item" href="admin.html#profileSection">My Profile</a></li>
@@ -78,16 +82,20 @@
         <textarea id="pDesc" required></textarea>
       </div>
 
-      <button type="submit" class="submit-btn" id="submitBtn">Add Product</button>
+      <button type="submit" class="submit-btn" id="submitBtn">
+        Add Product
+      </button>
+
     </form>
   </div>
 
 </div>
 
-<!-- Bootstrap -->
+
+<!-- JS LIBRARIES -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- FIRESTORE LOGIC -->
+<!-- FIREBASE + FIRESTORE -->
 <script type="module">
   import { db } from "./firebase-init.js";
   import {
@@ -100,7 +108,6 @@
 
   let editId = new URLSearchParams(window.location.search).get("edit");
 
-  // If editing product
   if (editId) {
     document.getElementById("formTitle").innerText = "Edit Product";
     document.getElementById("submitBtn").innerText = "Update Product";
@@ -117,38 +124,40 @@
     document.getElementById("pName").value = p.name;
     document.getElementById("pPrice").value = p.price;
     document.getElementById("pCategory").value = p.category;
-    document.getElementById("pDesc").value = p.description || "";
+    document.getElementById("pDesc").value = p.description ?? "";
   }
 
-  // Submit Form
+  // Form Submit
   document.getElementById("productForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById("pName").value;
-    const price = document.getElementById("pPrice").value;
-    const category = document.getElementById("pCategory").value;
-    const desc = document.getElementById("pDesc").value;
+    const name = pName.value;
+    const price = pPrice.value;
+    const category = pCategory.value;
+    const desc = pDesc.value;
 
     if (editId) {
-      // UPDATE EXISTING PRODUCT
+      // Update existing
       await updateDoc(doc(db, "products", editId), {
         name, price, category, description: desc
       });
 
       notify("Updated", "Product updated successfully", "info");
       setTimeout(() => (window.location.href = "products.html"), 900);
+
     } else {
-      // ADD NEW PRODUCT
+      // Add new product
       await addDoc(collection(db, "products"), {
         name, price, category, description: desc
       });
 
       notify("Added", "New product added successfully");
-      document.getElementById("productForm").reset();
+      productForm.reset();
     }
   });
 
-  // Sidebar toggle
+
+  // Sidebar Toggle
   menuBtn.onclick = () => {
     sidebar.classList.toggle("active");
     content.classList.toggle("moved");
@@ -156,11 +165,10 @@
   };
 
   // Logout
-  document.getElementById("logoutBtn").onclick =
-  document.getElementById("logoutBtn2").onclick = () => {
+  logoutBtn.onclick = logoutBtn2.onclick = () => {
     localStorage.removeItem("adminEmail");
     notify("Logged Out", "See you next time!", "info");
-    setTimeout(() => (window.location.href = "login.html"), 800);
+    setTimeout(() => (window.location.href = "admin-login.html"), 600);
   };
 
   // Toast Notification
@@ -184,7 +192,9 @@
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 4000);
   };
+
 </script>
 
 </body>
 </html>
+
