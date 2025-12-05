@@ -1,32 +1,35 @@
-// login.js
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 import { app } from "./firebase-init.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 
 const auth = getAuth(app);
 
-// Get form elements
-const loginForm = document.getElementById("login-form");
-const loginError = document.getElementById("login-error");
-
-loginForm.addEventListener("submit", (e) => {
+document.getElementById("login-form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
+  const error = document.getElementById("login-error");
 
-  if (!email || !password) {
-    loginError.innerText = "Please enter email and password";
-    return;
+  error.textContent = "";
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+
+    // Save logged-in user
+    localStorage.setItem("vm_currentUser", JSON.stringify({ email }));
+
+    // Check if admin
+    if (email === "voguemart@gmail.com") {
+      window.location.href = "admin.html";
+    } else {
+      window.location.href = "index.html";
+    }
+
+  } catch (err) {
+    error.textContent = "Invalid email or password.";
   }
-
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Login successful
-      alert("Login Successful!");
-      window.location.href = "index.html"; // redirect to homepage
-    })
-    .catch((error) => {
-      console.error(error);
-      loginError.innerText = "Login failed: " + error.message;
-    });
 });
+
