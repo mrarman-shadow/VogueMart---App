@@ -1,0 +1,381 @@
+/* =======================
+   VOGUEMART GLOBAL THEME (OPTION B)
+   ======================= */
+:root {
+  --bg: #024558;
+  --gold: #F8D0A4;
+  --white: #ffffff;
+  --text-dark: #024558;
+  --text-light: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: var(--bg);
+  color: var(--gold);
+  padding: 25px 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar h2 {
+  text-align: center;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+.sidebar a {
+  display: block;
+  text-decoration: none;
+  color: var(--white);
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  font-size: 18px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: var(--gold);
+  color: var(--text-dark);
+  transform: translateX(5px);
+}
+
+/* TOP NAV */
+.topnav {
+  margin-left: 250px;
+  height: 65px;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.topnav span {
+  color: var(--gold);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* CONTENT */
+.content {
+  margin-left: 250px;
+  padding: 25px;
+}
+
+/* CARDS */
+.card-vm {
+  background: var(--gold);
+  color: var(--text-dark);
+  padding: 25px;
+  text-align: center;
+  border-radius: 15px;
+  font-weight: 700;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.28);
+  transition: 0.3s;
+}
+
+.card-vm:hover {
+  transform: translateY(-5px);
+}
+
+/* TABLE */
+.table-vm {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  color: var(--text-dark);
+}
+
+.table-vm thead {
+  background: var(--bg);
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.table-vm td,
+.table-vm th {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-vm tbody tr:hover {
+  background: #e9f6f4;
+}
+
+/* FORM */
+.form-container {
+  width: 50%;
+  background: #fff;
+  color: #024558;
+  margin: 25px auto;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  background: var(--bg);
+  color: var(--gold);
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #036381;
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  width: 260px;
+  background: #ffffff;
+  border-radius: 14px;
+  display: flex;
+  gap: 12px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.28);
+  border-left: 5px solid var(--gold);
+  animation: toastIn .45s ease forwards, toastOut .45s ease 3.6s forwards;
+  opacity: 0;
+}
+
+.toast-title { font-weight: 800; }
+.toast-icon { font-size: 26px; }
+
+@keyframes toastIn {
+  from {opacity: 0; transform: translateX(120%);}
+  to {opacity: 1; transform: translateX(0);}
+}
+
+@keyframes toastOut {
+  from {opacity: 1;}
+  to {opacity: 0; transform: translateX(120%);}
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #001f29;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  background: #003b4e;
+  color: white;
+  padding: 20px;
+  position: fixed;
+}
+
+.sidebar ul li {
+  padding: 12px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+  background: #F8D0A4;
+  color: #003b4e;
+}
+
+/* MAIN */
+.main {
+  margin-left: 230px;
+  padding: 20px;
+  color: white;
+}
+
+/* NAV */
+.navbar {
+  background: #024558;
+  padding: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* CARDS */
+.card {
+  background: #F8D0A4;
+  padding: 25px;
+  border-radius: 10px;
+  margin: 15px;
+  color: #024558;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* TABLES */
+.table-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 25px;
+  color: black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #024558;
+  color: #F8D0A4;
+  padding: 12px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* FORMS */
+.form-container {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 25px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #024558;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+.page-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 25px;
+}
+
+/* Small cards row */
+.row {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.card-vm.small {
+    flex: 1;
+    background: var(--gold);
+    color: var(--text-dark);
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-vm.small p {
+    font-size: 22px;
+    margin-top: 5px;
+}
+
+/* Profile Card */
+.profile-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    width: 60%;
+    margin-top: 30px;
+}
+
+.profile-card h3 {
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+.profile-card p {
+    font-size: 16px;
+    color: var(--text-dark);
+}
+.view-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-btn:hover {
+  opacity: 0.8;
+}
+
+.delete-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  opacity: 0.8;
+}

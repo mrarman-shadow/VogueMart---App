@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VogueMart Admin – Orders</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+
+  <!-- Admin Theme -->
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<script>
+  // Block access if not logged in as admin
+  if (!localStorage.getItem("adminEmail")) {
+    window.location.href = "login.html";
+  }
+</script>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <div class="admin-logo">VM</div>
+  <h2>VogueMart Admin</h2>
+
+  <a href="admin.html">Dashboard</a>
+  <a href="orders.html" class="active">Orders</a>
+  <a href="customers.html">Customers</a>
+  <a href="products.html">Products</a>
+  <a href="add-product.html">Add Product</a>
+
+  <a href="#" id="logoutBtn" class="text-danger mt-4">Logout</a>
+</div>
+
+<!-- TOPNAV -->
+<div class="topnav" id="topnav">
+  <span id="menuBtn">☰</span>
+
+  <div class="dropdown profile ms-auto">
+    <img src="https://via.placeholder.com/40" data-bs-toggle="dropdown" />
+    <span data-bs-toggle="dropdown">Admin</span>
+
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li><a class="dropdown-item" href="admin.html#profileSection">My Profile</a></li>
+      <li><hr class="dropdown-divider" /></li>
+      <li><a class="dropdown-item text-danger" href="#" id="logoutBtn2">Logout</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content" id="content">
+
+  <h2>Orders</h2>
+
+  <!-- SEARCH -->
+  <input type="text" id="searchBox" class="form-control"
+         placeholder="Search Orders..." onkeyup="filterOrders()">
+
+  <!-- ORDERS TABLE -->
+  <div class="table-responsive mt-3">
+    <table class="table table-vm">
+      <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer</th>
+        <th>Product</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Total (₹)</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody id="ordersTableBody"></tbody>
+    </table>
+    
+  </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Firestore Logic -->
+<script type="module">
+  import { db } from "./firebase-init.js";
+  import {
+    collection, getDocs, doc, updateDoc, deleteDoc
+  } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+
+  let orders = [];
+
+  // Load orders
+  async function loadOrders() {
+    const snap = await getDocs(collection(db, "orders"));
+    orders = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderOrders(orders);
+  }
+
+  function renderOrders(list) {
+    const body = document.getElementById("ordersTableBody");
+    body.innerHTML = "";
+
+    list.forEach(o => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${o.id}</td>
+        <td>${o.customer || "Unknown"}</td>
+        <td>${o.product || "-"}</td>
+        <td>${o.date || "-"}</td>
+
+        <td>
+          <select class="form-select form-select-sm"
+                  onchange="updateStatus('${o.id}', this.value)">
+            <option ${o.status === "Pending" ? "selected" : ""}>Pending</option>
+            <option ${o.status === "Processing" ? "selected" : ""}>Processing</option>
+            <option ${o.status === "Shipped" ? "selected" : ""}>Shipped</option>
+            <option ${o.status === "Delivered" ? "selected" : ""}>Delivered</option>
+            <option ${o.status === "Cancelled" ? "selected" : ""}>Cancelled</option>
+          </select>
+        </td>
+
+        <td>${o.total || 0}</td>
+
+        <td>
+          <button class="btn btn-danger btn-sm" onclick="deleteOrder('${o.id}')">Delete</button>
+          <button class="btn btn-primary btn-sm" onclick="viewOrder('${o.id}')">View</button>
+        </td>
+      `;
+
+      body.appendChild(row);
+    });
+  }
+
+  // Search filter
+  window.filterOrders = () => {
+    const q = document.getElementById("searchBox").value.toLowerCase();
+    const filtered = orders.filter(o =>
+      o.id.toLowerCase().includes(q) ||
+      (o.customer || "").toLowerCase().includes(q) ||
+      (o.status || "").toLowerCase().includes(q)
+    );
+    renderOrders(filtered);
+  };
+
+  // Update status
+  window.updateStatus = async function (id, status) {
+    await updateDoc(doc(db, "orders", id), { status });
+    notify("Status Updated", `Order ${id} → ${status}`, "info");
+  };
+
+  // Delete order
+  window.deleteOrder = async function (id) {
+    if (!confirm(`Delete order ${id}?`)) return;
+    await deleteDoc(doc(db, "orders", id));
+    notify("Order Deleted", `Order ${id} removed`, "error");
+    loadOrders();
+  };
+
+  // View order
+  window.viewOrder = id => {
+    const o = orders.find(x => x.id === id);
+    if (!o) return;
+    alert(`
+Order ID: ${id}
+Customer: ${o.customer}
+Product: ${o.product}
+Total: ₹${o.total}
+Status: ${o.status}
+    `);
+  };
+
+  // Sidebar toggle
+  menuBtn.onclick = () => {
+    sidebar.classList.toggle("active");
+    content.classList.toggle("moved");
+    topnav.classList.toggle("moved");
+  };
+
+  // Logout
+  document.getElementById("logoutBtn").onclick =
+  document.getElementById("logoutBtn2").onclick = () => {
+    localStorage.removeItem("adminEmail");
+    notify("Logged Out", "See you again!", "info");
+    setTimeout(() => window.location.href = "login.html", 800);
+  };
+
+  // Toast function
+  window.notify = function (title, msg, type = "success") {
+    const toast = document.createElement("div");
+    toast.className = "toast";
+
+    let icon = "✔";
+    if (type === "error") icon = "❌";
+    if (type === "warning") icon = "⚠";
+    if (type === "info") icon = "ℹ";
+
+    toast.innerHTML = `
+      <div class="toast-icon">${icon}</div>
+      <div>
+        <div class="toast-title">${title}</div>
+        <div class="toast-msg">${msg}</div>
+      </div>
+    `;
+
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 4000);
+  };
+
+  loadOrders();
+</script>
+
+</body>
+</html>

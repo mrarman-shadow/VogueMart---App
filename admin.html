@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VogueMart Admin</title>
+
+  <link rel="stylesheet" href="admin.css">
+</head>
+<script>
+if (localStorage.getItem("adminLoggedIn") !== "true") {
+    window.location.href = "admin-login.html";
+}
+</script>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>VogueMart</h2>
+    <ul>
+      <li class="active" onclick="showSection('dashboard')">Dashboard</li>
+      <li onclick="showSection('productsSection')">Products</li>
+      <li onclick="showSection('addProductSection')">Add Product</li>
+      <li onclick="showSection('customersSection')">Customers</li>
+      <li onclick="showSection('ordersSection')">Orders</li>
+     <li id="logoutBtn" onclick="logoutAdmin()">Logout</li>
+
+    </ul>
+  </div>
+
+  <!-- MAIN PAGE -->
+  <div class="main">
+
+    <!-- NAVBAR -->
+    <div class="navbar">Admin Dashboard</div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="section">
+      <div class="dashboard-container">
+        <div class="card-grid">
+
+          <div class="card">
+            <h3>Total Users</h3>
+            <p id="totalUsers">0</p>
+          </div>
+
+          <div class="card">
+            <h3>Total Orders</h3>
+            <p id="totalOrders">0</p>
+          </div>
+
+          <div class="card">
+            <h3>Total Products</h3>
+            <p id="totalProducts">0</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD PRODUCT -->
+    <div id="addProductSection" class="section hidden">
+      <div class="form-container">
+        <h2>Add Product</h2>
+
+        <form id="productForm">
+          <div class="form-group">
+            <label>Product Name</label>
+            <input id="pName" type="text" required>
+          </div>
+
+          <div class="form-group">
+            <label>Price</label>
+            <input id="pPrice" type="number" required>
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <input id="pCategory" type="text" required>
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="pDesc" required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Add Product</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div id="productsSection" class="section hidden">
+      <div class="table-container">
+        <h2>Products List</h2>
+        <table id="productsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CUSTOMERS -->
+    <div id="customersSection" class="section hidden">
+      <div class="table-container">
+        <h2>Customers</h2>
+        <table id="customersTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Total Orders</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ORDERS -->
+    <div id="ordersSection" class="section hidden">
+      <div class="table-container">
+        <h2>Orders</h2>
+        <table id="ordersTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Product</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Update</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
