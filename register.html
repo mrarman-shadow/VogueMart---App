@@ -1,49 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VogueMart - Register</title>
-  <link rel="stylesheet" href="./Style.css">
-<script src="./script.js"></script>
-<script src="./firebase-init.js"></script>
-<script src="./login.js"></script>
 
+    <!-- Correct GitHub Case -->
+    <link rel="stylesheet" href="Style.css" />
 </head>
 
 <body>
 
-<!-- Navbar -->
+<!-- NAVBAR -->
 <nav class="navbar">
     <h1 class="brand">VogueMart</h1>
+
     <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#products">Shop</a></li>
+        <li><a href="shop.html">Shop</a></li>
         <li><a href="cart.html">Cart</a></li>
         <li><a href="login.html">Login</a></li>
     </ul>
+
+    <!-- Dark Mode -->
+    <button id="themeToggle" class="theme-btn">🌙</button>
 </nav>
 
-<!-- Register Section -->
+<!-- REGISTER SECTION -->
 <section class="login-section">
     <h2>Create Your Account</h2>
 
     <form id="register-form">
-        <input type="email" id="email" placeholder="Enter your email" required>
-        <input type="password" id="password" placeholder="Create password" required>
-        <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <input type="password" id="password" placeholder="Create password" required />
+        <input type="password" id="confirmPassword" placeholder="Confirm password" required />
         <button type="submit" id="register-btn-form">Create Account</button>
     </form>
 
-    <p id="register-error" style="color:red;"></p>
+    <p id="register-error" style="color:#ff6e6e; margin-top:10px;"></p>
 
-    <p>Already have an account? <a href="login.html">Login</a></p>
+    <p style="margin-top:20px;">
+        Already have an account?
+        <a href="login.html" style="color:#ffb87a;">Login</a>
+    </p>
 </section>
 
-<!-- Footer -->
-<footer><p>© 2025 VogueMart | All Rights Reserved</p></footer>
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 VogueMart | All Rights Reserved</p>
+</footer>
 
-<script type="module" src="./register.js"></script>
+<!-- FIREBASE REGISTER LOGIC -->
+<script type="module">
+    import { app } from "./firebase-init.js";
+    import {
+        getAuth,
+        createUserWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+
+    const auth = getAuth(app);
+
+    const form = document.getElementById("register-form");
+    const errorBox = document.getElementById("register-error");
+    const registerBtn = document.getElementById("register-btn-form");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        errorBox.textContent = "";
+
+        const email = document.getElementById("email").value.trim();
+        const pass = document.getElementById("password").value.trim();
+        const confirm = document.getElementById("confirmPassword").value.trim();
+
+        if (pass !== confirm) {
+            errorBox.textContent = "Passwords do not match!";
+            return;
+        }
+
+        registerBtn.disabled = true;
+        registerBtn.innerText = "Creating...";
+
+        try {
+            await createUserWithEmailAndPassword(auth, email, pass);
+
+            // Redirect to login page
+            alert("Account created successfully!");
+            window.location.href = "login.html";
+
+        } catch (err) {
+            registerBtn.disabled = false;
+            registerBtn.innerText = "Create Account";
+            errorBox.textContent = "Error: " + err.message;
+        }
+    });
+</script>
+
+<!-- DARK MODE -->
+<script>
+    document.getElementById("themeToggle").onclick = () => {
+        document.body.classList.toggle("dark");
+    };
+</script>
+
 </body>
 </html>
 
