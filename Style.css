@@ -842,6 +842,87 @@ body {
     width: 95%;
   }
 }
+/* =======================
+   AUTH PAGES (LOGIN / REGISTER)
+   ======================= */
+
+.login-section,
+.register-section {
+  max-width: 400px;
+  margin: 120px auto 40px;       /* push below navbar, center horizontally */
+  padding: 24px 20px;
+  background: #024558;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  color: #ffe8c8;
+}
+
+.login-section h2,
+.register-section h2 {
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.login-section form,
+.register-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-section input,
+.register-section input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.login-section button,
+.register-section button {
+  margin-top: 8px;
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-radius: 999px;
+  background: #ff6b5a;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.login-section button:hover,
+.register-section button:hover {
+  background: #ff836f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.login-section p,
+.register-section p {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Navbar tweaks on small screens so it doesn't sit on top of your form */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .navbar .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 6px;
+  }
+}
+
 
 
 
