@@ -16,6 +16,12 @@ if (localStorage.getItem("adminLoggedIn") !== "true") {
     window.location.href = "admin-login.html";
 }
 </script>
+<script>
+  // Simple front-end guard
+  if (localStorage.getItem("vm_isAdmin") !== "true") {
+    window.location.href = "admin-login.html";
+  }
+</script>
 
 <body>
 
@@ -159,5 +165,6 @@ if (localStorage.getItem("adminLoggedIn") !== "true") {
 
 </body>
 </html>
+
 
 
