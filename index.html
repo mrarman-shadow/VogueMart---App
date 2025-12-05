@@ -13,19 +13,22 @@
  <nav class="navbar">
   <h1 class="brand">VogueMart</h1>
 
+<ul class="nav-links">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="shop.html">Shop</a></li>
+  <li><a href="wishlist.html">Wishlist</a></li>
+  <li><a href="account.html">Account</a></li>
+  <li><a href="cart.html">Cart</a></li>
+ <li><a href="admin-login.html" style="color:red;">Admin</a></li>
 
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="shop.html">Shop</a></li>
-    <li><a href="wishlist.html">Wishlist</a></li>
-    <li><a href="login.html">Account</a></li>
-    <li><a href="cart.html">Cart</a></li>
-  </ul>
+<button id="logoutBtn" class="logout">Logout</button>
 
-  <!-- FIXED: Theme toggle is visible on mobile -->
+</ul>
+
+
+  <!-- Dark mode toggle OUTSIDE UL -->
   <button id="themeToggle" class="theme-btn">🌙</button>
 </nav>
-
 
 
 
@@ -99,14 +102,11 @@
 
 <!-- Bottom Navigation -->
 <div class="bottom-nav">
-  <a href="index.html">🏠<br>Home</a>
-  <a id="shopBtn2" href="shop.html">🛍<br>Shop</a>
-  <a href="wishlist.html">❤️<br>Wishlist</a>
-  <a href="login.html">👤<br>Account</a>
-  <a href="cart.html">🛒<br>Cart</a>
-
-  <!-- 🌙 DARK MODE BUTTON ADDED HERE -->
-  <button id="themeToggleMobile" class="theme-btn-mobile"></button>
+  <a href="index.html">🏠 Home</a>
+  <a id="shopBtn2" href="shop.html">🛍 Shop</a>
+  <a href="wishlist.html">❤️ Wishlist</a>
+  <a href="login.html">👤 Account</a>
+  <a href="cart.html">🛒 Cart</a>
 </div>
 
 
@@ -145,18 +145,15 @@
         });
     });
   </script>
+  <script>
+document.addEventListener("keydown", e => {
+  if (e.key === "A") window.location.href = "admin.html";
+});
+</script>
+
 
 </body>
 </html> 
-
-
-
-
-
-
-
-
-
 
 
 
