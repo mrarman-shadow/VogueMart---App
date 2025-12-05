@@ -5,20 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VogueMart Admin</title>
 
-  <link rel="stylesheet" href="admin.css">
-  <script src="./script.js"></script>
-<script src="./firebase-init.js"></script>
-<script src="./login.js"></script>
+  <!-- Main Admin CSS -->
+  <link rel="stylesheet" href="admin.css" />
 
 </head>
+
+<!-- ADMIN LOGIN CHECK -->
 <script>
-if (localStorage.getItem("adminLoggedIn") !== "true") {
-    window.location.href = "admin-login.html";
-}
-</script>
-<script>
-  // Simple front-end guard
-  if (localStorage.getItem("vm_isAdmin") !== "true") {
+  if (!localStorage.getItem("adminEmail")) {
     window.location.href = "admin-login.html";
   }
 </script>
@@ -27,15 +21,14 @@ if (localStorage.getItem("adminLoggedIn") !== "true") {
 
   <!-- SIDEBAR -->
   <div class="sidebar">
-    <h2>VogueMart</h2>
+    <h2 class="admin-title">VogueMart</h2>
     <ul>
       <li class="active" onclick="showSection('dashboard')">Dashboard</li>
       <li onclick="showSection('productsSection')">Products</li>
       <li onclick="showSection('addProductSection')">Add Product</li>
       <li onclick="showSection('customersSection')">Customers</li>
       <li onclick="showSection('ordersSection')">Orders</li>
-     <li id="logoutBtn" onclick="logoutAdmin()">Logout</li>
-
+      <li id="logoutBtn">Logout</li>
     </ul>
   </div>
 
@@ -77,17 +70,17 @@ if (localStorage.getItem("adminLoggedIn") !== "true") {
         <form id="productForm">
           <div class="form-group">
             <label>Product Name</label>
-            <input id="pName" type="text" required>
+            <input id="pName" type="text" required />
           </div>
 
           <div class="form-group">
             <label>Price</label>
-            <input id="pPrice" type="number" required>
+            <input id="pPrice" type="number" required />
           </div>
 
           <div class="form-group">
             <label>Category</label>
-            <input id="pCategory" type="text" required>
+            <input id="pCategory" type="text" required />
           </div>
 
           <div class="form-group">
@@ -161,10 +154,33 @@ if (localStorage.getItem("adminLoggedIn") !== "true") {
 
   </div>
 
- <script src="./admin-script.js"></script>
+  <!-- SCRIPTS (Correct Order for GitHub) -->
+  <script src="firebase-init.js"></script>
+  <script src="admin.js"></script>
+  <script src="admin-dashboard.js"></script>
+  <script src="admin-script.js"></script>
+  <script src="products.js"></script>
+  <script src="customers.js"></script>
+  <script src="orders.js"></script>
+
+  <!-- ADMIN LOGOUT -->
+  <script>
+    document.getElementById("logoutBtn").onclick = () => {
+      localStorage.removeItem("adminEmail");
+      window.location.href = "admin-login.html";
+    };
+  </script>
+
+  <!-- SECTION SWITCHER -->
+  <script>
+    function showSection(id) {
+      document.querySelectorAll(".section").forEach(sec => sec.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+
+      document.querySelectorAll(".sidebar ul li").forEach(li => li.classList.remove("active"));
+      event.target.classList.add("active");
+    }
+  </script>
 
 </body>
 </html>
-
-
-
