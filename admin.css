@@ -576,4 +576,54 @@ input, textarea {
 .hidden {
   display: none;
 }
+/* ===================== MOBILE FIX FOR SIDEBAR ===================== */
+@media (max-width: 768px) {
+
+  /* Hide sidebar initially */
+  .sidebar {
+      position: fixed;
+      left: -260px;
+      top: 0;
+      height: 100vh;
+      width: 230px;
+      background: #003b4e;
+      transition: 0.3s ease;
+      z-index: 9999;
+  }
+
+  /* When mobile menu opens */
+  .sidebar.active {
+      left: 0;
+  }
+
+  /* MAIN CONTENT SHIFT FIX */
+  .main {
+      margin-left: 0 !important;
+      width: 100%;
+  }
+
+  /* Mobile navbar toggle button */
+  .menu-btn {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      font-size: 30px;
+      cursor: pointer;
+      color: #F8D0A4;
+  }
+
+  /* Prevent content from sliding under sidebar */
+  .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      z-index: 9998;
+  }
+
+  .overlay.show {
+      display: block;
+  }
+}
+
 
