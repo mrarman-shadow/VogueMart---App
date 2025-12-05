@@ -18,6 +18,8 @@
 </script>
 
 <body>
+  <div class="menu-btn" onclick="toggleMenu()">&#9776;</div>
+<div id="overlay" class="overlay"></div>
 <div class="mobile-toggle" onclick="toggleSidebar()">☰</div>
 
 <script>
@@ -188,7 +190,20 @@ function toggleSidebar() {
       event.target.classList.add("active");
     }
   </script>
+<script>
+function toggleMenu() {
+    document.querySelector(".sidebar").classList.toggle("active");
+    document.getElementById("overlay").classList.toggle("show");
+}
+
+// Close menu when clicking outside
+document.getElementById("overlay").onclick = () => {
+    document.querySelector(".sidebar").classList.remove("active");
+    document.getElementById("overlay").classList.remove("show");
+};
+</script>
 
 </body>
 </html>
+
 
