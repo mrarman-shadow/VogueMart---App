@@ -784,42 +784,64 @@ body {
   background: #ffffff;
   color: #024558;
 }
-/* Make theme button visible on mobile always */
-.theme-btn {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 200;
-}
+@media (max-width: 480px) {
 
-/* On small screens, reduce size */
-@media (max-width: 768px) {
-  .theme-btn {
-    font-size: 20px;
-    right: 10px;
+  /* NAVBAR */
+  .navbar {
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links li {
+    margin: 5px 0;
+  }
+
+  /* LOGIN FORMS */
+  form input, 
+  form button {
+    width: 90% !important;
+    font-size: 16px;
+  }
+
+  .login-section, 
+  .register-section,
+  .admin-login-section {
+    width: 95%;
+    margin: auto;
+  }
+
+  /* PRODUCT CARDS */
+  .products {
+    grid-template-columns: 1fr !important;
+    padding: 10px;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* HERO SECTION */
+  .hero h1 {
+    font-size: 26px;
+    text-align: center;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  /* SEARCH BAR */
+  .vm-search-bar {
+    width: 95%;
   }
 }
-/* Dark mode button for mobile bottom nav */
-.theme-btn-mobile {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 20px;
-  padding: 4px 10px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.theme-btn-mobile:active {
-  transform: scale(0.9);
-}
-
-
-
-
 
 
 
