@@ -4,51 +4,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VogueMart - Login</title>
-   <link rel="stylesheet" href="./Style.css" />
+
+  <!-- Correct Case (GitHub Sensitive) -->
+  <link rel="stylesheet" href="Style.css" />
 </head>
+
 <body>
 
-  <!-- Navbar (same look as home) -->
-  <nav class="navbar">
-    <h1 class="brand">VogueMart</h1>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="shop.html">Shop</a></li>
-      <li><a href="cart.html">Cart</a></li>
-      <li><a href="login.html" class="btn">Login</a></li>
-    </ul>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h1 class="brand">VogueMart</h1>
 
-    <!-- Dark mode button if you want it here too -->
-    <button id="themeToggle" class="theme-btn">🌙</button>
-  </nav>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="cart.html">Cart</a></li>
+    <li><a href="login.html" class="btn">Login</a></li>
+  </ul>
 
-  <!-- LOGIN CARD -->
-  <section class="login-section">
-    <h2>Login to VogueMart</h2>
+  <!-- Dark Mode -->
+  <button id="themeToggle" class="theme-btn">🌙</button>
+</nav>
 
-    <form id="login-form">
-      <input type="email" id="email" placeholder="Enter your email" required>
-      <input type="password" id="password" placeholder="Enter your password" required>
-      <button type="submit" id="login-btn-form">Login</button>
-    </form>
+<!-- LOGIN FORM SECTION -->
+<section class="login-section">
+  <h2>Login to VogueMart</h2>
 
-    <p id="login-error" style="color:#ffb4a4;"></p>
+  <form id="login-form">
+    <input type="email" id="email" placeholder="Enter your email" required>
+    <input type="password" id="password" placeholder="Enter your password" required>
+    <button type="submit" id="login-btn-form">Login</button>
+  </form>
 
-    <p>Don't have an account?
-      <a href="register.html" style="color:#ffd3aa; font-weight:600;">Create Account</a>
-    </p>
-  </section>
+  <p id="login-error" style="color:#ff6e6e; margin-top:10px;"></p>
 
-  <footer>
-    <p>© 2025 VogueMart | All Rights Reserved</p>
-  </footer>
+  <p style="margin-top:20px;">
+    Don't have an account?
+    <a href="register.html" style="color:#ffb87a; font-weight:600;">Create Account</a>
+  </p>
+</section>
 
-  <!-- Your existing Firebase login logic -->
-  <script type="module" src="login.js"></script>
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 VogueMart | All Rights Reserved</p>
+</footer>
+
+<!-- FIREBASE LOGIN SCRIPT -->
+<script type="module">
+  import { app } from "./firebase-init.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+
+  const auth = getAuth(app);
+
+  const form = document.getElementById("login-form");
+  const errorBox = document.getElementById("login-error");
+  const loginButton = document.getElementById("login-btn-form");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorBox.textContent = "";
+    loginButton.disabled = true;
+    loginButton.innerText = "Checking...";
+
+    const email = document.getElementById("email").value.trim();
+    const pass = document.getElementById("password").value.trim();
+
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+
+      // Redirect to account page
+      window.location.href = "account.html";
+
+    } catch (err) {
+      loginButton.disabled = false;
+      loginButton.innerText = "Login";
+      errorBox.textContent = "Invalid email or password!";
+    }
+  });
+</script>
+
+<!-- DARK MODE SCRIPT -->
+<script>
+  const toggle = document.getElementById("themeToggle");
+  toggle.onclick = () => {
+    document.body.classList.toggle("dark");
+  };
+</script>
+
 </body>
 </html>
-
-
 
 
 
