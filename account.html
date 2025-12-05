@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Account – VogueMart</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      background: var(--bg);
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+      padding: 90px 18px;
+      text-align: center;
+    }
+
+    .account-box {
+      max-width: 420px;
+      margin: auto;
+      background: var(--card-bg);
+      padding: 26px;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    .account-box h2 {
+      margin-bottom: 15px;
+      color: #013a46;
+    }
+
+    .account-box p {
+      font-size: 15px;
+      margin-bottom: 10px;
+      color: #024558;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 15px;
+      border-radius: 999px;
+      border: none;
+      font-weight: 700;
+      background: #ff6b5a;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+
+  <!-- User Protect -->
+  <script>
+    if (!localStorage.getItem("userEmail")) {
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+
+<body>
+
+  <div class="account-box">
+    <h2>Your Account</h2>
+
+    <p><strong>Email:</strong></p>
+    <p id="emailField"></p>
+
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+  <script>
+    document.getElementById("emailField").innerText =
+      localStorage.getItem("userEmail");
+
+    document.getElementById("logoutBtn").onclick = () => {
+      localStorage.removeItem("userEmail");
+      window.location.href = "login.html";
+    };
+  </script>
+
+</body>
+</html>
