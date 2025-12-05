@@ -366,15 +366,6 @@ if (themeToggleMobile) {
   });
 }
 
-  // -------- Dashboard load (only on admin page) --------
-  loadDashboard();
-
-  // -------- Demo notification on normal pages --------
-  if (!usersCountEl && !ordersCountEl && !productsCountEl && !ordersTbody) {
-    notify("VogueMart", "Premium Notification Working!", "info");
-  }
-});
-
 
 
 
