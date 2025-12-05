@@ -4,48 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VogueMart - Login</title>
-<link rel="stylesheet" href="./Style.css">
-
-
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Navbar -->
+  <!-- Navbar (same look as home) -->
   <nav class="navbar">
     <h1 class="brand">VogueMart</h1>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#products">Shop</a></li>
+      <li><a href="shop.html">Shop</a></li>
       <li><a href="cart.html">Cart</a></li>
-      <li><a href="#" class="btn" id="login-btn">Login</a></li>
-      <a href="register.html">Create Account</a>
-<li><a href="login.html">Account</a></li>
-
+      <li><a href="login.html" class="btn">Login</a></li>
     </ul>
+
+    <!-- Dark mode button if you want it here too -->
+    <button id="themeToggle" class="theme-btn">🌙</button>
   </nav>
 
-  <!-- Login Section -->
+  <!-- LOGIN CARD -->
   <section class="login-section">
     <h2>Login to VogueMart</h2>
+
     <form id="login-form">
       <input type="email" id="email" placeholder="Enter your email" required>
       <input type="password" id="password" placeholder="Enter your password" required>
       <button type="submit" id="login-btn-form">Login</button>
     </form>
-    <p id="login-error" style="color:red;"></p>
+
+    <p id="login-error" style="color:#ffb4a4;"></p>
+
+    <p>Don't have an account?
+      <a href="register.html" style="color:#ffd3aa; font-weight:600;">Create Account</a>
+    </p>
   </section>
 
-  <!-- Footer -->
-  <footer><p>© 2025 VogueMart | All Rights Reserved</p></footer>
+  <footer>
+    <p>© 2025 VogueMart | All Rights Reserved</p>
+  </footer>
 
-  <!-- Firebase Login Script -->
-<script src="./login.js"></script>
-
-<script type="module" src="./firebase-init.js"></script>
-
-
+  <!-- Your existing Firebase login logic -->
+  <script type="module" src="login.js"></script>
 </body>
 </html>
+
 
 
 
