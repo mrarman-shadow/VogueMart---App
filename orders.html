@@ -9,15 +9,16 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
 
-  <!-- Admin Theme -->
+  <!-- Admin CSS -->
   <link rel="stylesheet" href="admin.css" />
 </head>
+
 <body>
 
+<!-- ADMIN LOGIN CHECK -->
 <script>
-  // Block access if not logged in as admin
   if (!localStorage.getItem("adminEmail")) {
-    window.location.href = "login.html";
+    window.location.href = "admin-login.html";
   }
 </script>
 
@@ -35,13 +36,14 @@
   <a href="#" id="logoutBtn" class="text-danger mt-4">Logout</a>
 </div>
 
-<!-- TOPNAV -->
+<!-- TOP NAV -->
 <div class="topnav" id="topnav">
   <span id="menuBtn">☰</span>
 
   <div class="dropdown profile ms-auto">
-    <img src="https://via.placeholder.com/40" data-bs-toggle="dropdown" />
-    <span data-bs-toggle="dropdown">Admin</span>
+    <img src="https://via.placeholder.com/40"
+         data-bs-toggle="dropdown" class="profile-img" />
+    <span class="profile-name" data-bs-toggle="dropdown">Admin</span>
 
     <ul class="dropdown-menu dropdown-menu-end">
       <li><a class="dropdown-item" href="admin.html#profileSection">My Profile</a></li>
@@ -64,19 +66,18 @@
   <div class="table-responsive mt-3">
     <table class="table table-vm">
       <thead>
-      <tr>
-        <th>Order ID</th>
-        <th>Customer</th>
-        <th>Product</th>
-        <th>Date</th>
-        <th>Status</th>
-        <th>Total (₹)</th>
-        <th>Action</th>
-      </tr>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Product</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Total (₹)</th>
+          <th>Action</th>
+        </tr>
       </thead>
       <tbody id="ordersTableBody"></tbody>
     </table>
-    
   </div>
 
 </div>
@@ -84,16 +85,20 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Firestore Logic -->
+<!-- FIREBASE LOGIC -->
 <script type="module">
   import { db } from "./firebase-init.js";
   import {
-    collection, getDocs, doc, updateDoc, deleteDoc
+    collection,
+    getDocs,
+    doc,
+    updateDoc,
+    deleteDoc
   } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
   let orders = [];
 
-  // Load orders
+  // Load Orders
   async function loadOrders() {
     const snap = await getDocs(collection(db, "orders"));
     orders = snap.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -127,8 +132,12 @@
         <td>${o.total || 0}</td>
 
         <td>
-          <button class="btn btn-danger btn-sm" onclick="deleteOrder('${o.id}')">Delete</button>
-          <button class="btn btn-primary btn-sm" onclick="viewOrder('${o.id}')">View</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteOrder('${o.id}')">
+            Delete
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="viewOrder('${o.id}')">
+            View
+          </button>
         </td>
       `;
 
@@ -136,7 +145,7 @@
     });
   }
 
-  // Search filter
+  // FILTER
   window.filterOrders = () => {
     const q = document.getElementById("searchBox").value.toLowerCase();
     const filtered = orders.filter(o =>
@@ -147,24 +156,26 @@
     renderOrders(filtered);
   };
 
-  // Update status
-  window.updateStatus = async function (id, status) {
+  // UPDATE STATUS
+  window.updateStatus = async (id, status) => {
     await updateDoc(doc(db, "orders", id), { status });
     notify("Status Updated", `Order ${id} → ${status}`, "info");
   };
 
-  // Delete order
-  window.deleteOrder = async function (id) {
+  // DELETE ORDER
+  window.deleteOrder = async (id) => {
     if (!confirm(`Delete order ${id}?`)) return;
+
     await deleteDoc(doc(db, "orders", id));
     notify("Order Deleted", `Order ${id} removed`, "error");
     loadOrders();
   };
 
-  // View order
+  // VIEW ORDER
   window.viewOrder = id => {
     const o = orders.find(x => x.id === id);
     if (!o) return;
+
     alert(`
 Order ID: ${id}
 Customer: ${o.customer}
@@ -174,22 +185,22 @@ Status: ${o.status}
     `);
   };
 
-  // Sidebar toggle
+  // SIDEBAR TOGGLE
   menuBtn.onclick = () => {
     sidebar.classList.toggle("active");
     content.classList.toggle("moved");
     topnav.classList.toggle("moved");
   };
 
-  // Logout
-  document.getElementById("logoutBtn").onclick =
-  document.getElementById("logoutBtn2").onclick = () => {
+  // LOGOUT
+  logoutBtn.onclick =
+  logoutBtn2.onclick = () => {
     localStorage.removeItem("adminEmail");
     notify("Logged Out", "See you again!", "info");
-    setTimeout(() => window.location.href = "login.html", 800);
+    setTimeout(() => window.location.href = "admin-login.html", 600);
   };
 
-  // Toast function
+  // TOAST FUNCTION
   window.notify = function (title, msg, type = "success") {
     const toast = document.createElement("div");
     toast.className = "toast";
